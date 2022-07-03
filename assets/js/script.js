@@ -1,11 +1,21 @@
-var getweather = function(data) {
-    // format the github api url
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=e1a85eb1e76f39b2b920deaf5f37b8df"
-  
-    // make a get request to url
-    fetch(apiUrl)
-    console.log(data)
+var cityList =$("#city-list");
+var cities = [];
+var key = "e1a85eb1e76f39b2b920deaf5f37b8df";
+
+//Formation of days
+function FormatDay(date){
+    var date = new Date();
+    conlog.log(date);
+    var month = date.getMonth()+1;
+    var day = date.getDate();
+
+    var dayOutput = date.getFullYear() + '/' +
+        (month<10 ? '0' : '') + month + '/' +
+        (day<10 ? '0' : '') + day;
+    return dayOutput;
 }
+init()
 
-
-getweather();
+function getResponseWeather(cityName){
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + key; 
+}
