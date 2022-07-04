@@ -14,8 +14,9 @@ function FormatDay(date){
         (day<10 ? '0' : '') + day;
     return dayOutput;
 }
+init();
 //Storage/JSON string
-function cityLife (){
+function init (){
     var storedCities = JSON.parse(localStorage.getItem("cities"));
     if (storedCities !== null) {
         cities = storedCities;
@@ -65,5 +66,18 @@ function renderCities(){
 });
 
 function getResponseWeather(cityName){
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + key; 
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + key;
+    $("#today-weather").empty();
+    $.ajax({url: queryURL, method: "GET" }).then(function(response) {
+        cityTitle = $("<h3>").text(response.name + " "+ FormatDay());
+        $("#today-weather").append(cityTitle);
+        var TemperatureToNum = parseInt((response.main.temp)*9/5 - 459);
+        var cityTemperature = $("<p>").text("Temperature: "+ TemperatureToNum + " F");
+        $("#today-weather").append(cityTemperature);
+        var cityHumidity = $("<p>").text("Humidity: "+ response.main.humidity + " %");
+        $("#today-weather").append(cityHumidity);
+        var cityWindSpeed = $("<p>").text("Wind Speed: "+ response.wind.speed + " MPH");
+        $("#today-weather").append(cityWindSpeed);
+
+    }) 
 }
