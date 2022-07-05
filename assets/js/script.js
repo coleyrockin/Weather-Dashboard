@@ -144,3 +144,6 @@ function renderCities() {
     var thisCity = $(this).attr("data-city");
     getResponseWeather(thisCity);
   });
+
+
+  //need to make the list not endless**

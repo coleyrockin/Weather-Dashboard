@@ -16,3 +16,7 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 https://github.com/coleyrockin/Weather-Dashboard
+
+https://coleyrockin.github.io/Weather-Dashboard/
+
+![img](./assets/images/weather-dashboard.jpg)
